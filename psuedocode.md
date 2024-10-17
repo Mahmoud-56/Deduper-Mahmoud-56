@@ -51,7 +51,7 @@ Close the SAM file and output file.
 
 ```
 
-# High-level Function 
+# High-level Functions
 
 ### 1. Find chromosome number
 ```
@@ -100,7 +100,7 @@ Output:
 Minus 
 ```
 
-### Find Read Position 
+### 4. Find Read Position 
 
 ```
 def find_pos(line: str) -> : int
