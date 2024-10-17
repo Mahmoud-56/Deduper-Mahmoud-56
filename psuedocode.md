@@ -1,3 +1,4 @@
+# Deduper
 
 The goal of this assignment is to write a reference based PCR duplicate removal tool. That is, given a sorted sam file of uniquely mapped reads, remove all PCR duplicates (retain only a single copy of each read)
 
