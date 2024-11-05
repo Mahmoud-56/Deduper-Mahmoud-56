@@ -1,4 +1,3 @@
-# Deduper
 
 The goal of this assignment is to write a reference based PCR duplicate removal tool. That is, given a sorted sam file of uniquely mapped reads, remove all PCR duplicates (retain only a single copy of each read)
 
@@ -20,10 +19,7 @@ When looking at a SAM file, PCR duplicates should map to the same chromosome (RN
 # Pseudocode
 
 ```
-
-Have the chromosome number as a global variable sinice the samtools will be used to sort the file by chromosome numebr. So everytime we see a \
-new chromosme number, we will clear the set. 
-Initialize an empty set called `read_pos` to track unique read positions (UMI, strand direction, adjusted start position).
+Initialize an empty set called `read_pos` to track unique read positions (UMI, chromosome, adjusted start position).
 
 Open the sorted SAM file (sorted by chromosome number using samtools or awk).
 
@@ -34,19 +30,15 @@ For each line in the SAM file:
         Discard the read or write it to a separate file.
         Continue to the next read.
     
-    Extract the chromosome number and starting position
-
+    Extract the chromosome number and starting position (adjust for soft clipping based using CIGAR string).
+    
     If we encounter a new chromosome number:
         Clear the `read_pos` set to start fresh for the new chromosome.
-
-    if the read is on the +ve strand (using BITFLAG 16 from column 2):
-     adjust for soft clipping based using CIGAR string. Only looking at 'S' on the left side. Whatever the number before S, it will be sibstracted from POS number given in SAM file. 
     
-    else:
     Check if the read is on the reverse strand (using BITFLAG 16 from column 2):
-        look at the cigar string, if there is 'S' 'D' or 'N' add the numbers before those letters to the POS  
+        Adjust the start position based on the strand direction 
     
-    Create a tuple (UMI, strand direction,corrected start position)
+    Create a tuple (UMI, chromosome, corrected start position)
 
     If the tuple is already in read_pos:
         Discard the read (consider it a duplicate).
@@ -58,7 +50,7 @@ Close the SAM file and output file.
 
 ```
 
-# High-level Functions
+# High-level Function 
 
 ### 1. Find chromosome number
 ```
@@ -107,7 +99,7 @@ Output:
 Minus 
 ```
 
-### 4. Find Read Position 
+### Find Read Position 
 
 ```
 def find_pos(line: str) -> : int
@@ -127,6 +119,47 @@ NS500451:154:HWKTMBGXX:1:11101:24260:1121:CTGTTCAC	0	3	76814286	36	2S69M	*	0	0	T
 Output:
 76814284
 ```
+
+
+
+### Part 3 
+
+#### Output 
+
+
+using samtools to sort by chromosome number (default) before running python script 
+
+```
+samtools sort -o <output> <input> 
+```
+
+To get the counts of reads per chromosome, I used the following awk command:
+```
+awk '!/^@/ {print $3}' Dedup_output_SE | sort -V | uniq -c | awk '{print $2 "\t" $1}'
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
