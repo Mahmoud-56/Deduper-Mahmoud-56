@@ -126,7 +126,33 @@ Output:
 
 #### Output 
 
-
+./Dedy.sh 
+Number of duplicates removed: 4467362
+Number of wrong UMIs found: 0
+	Command being timed: "./AlMahmoud_Deduper.py -u STL96.txt -f C1_SE_uniqAlign_sorted.sam -o Dedup_output_SE"
+	User time (seconds): 73.35
+	System time (seconds): 5.06
+	Percent of CPU this job got: 98%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 1:19.87
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 639372
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 162341
+	Voluntary context switches: 1118
+	Involuntary context switches: 143
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0
+---------------------------------------------------------------------------------------
 using samtools to sort by chromosome number (default) before running python script 
 
 ```
