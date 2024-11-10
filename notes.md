@@ -125,7 +125,7 @@ Output:
 ### Part 3 
 
 #### Output 
-
+```
 ./Dedy.sh 
 Number of duplicates removed: 4467362
 Number of wrong UMIs found: 0
@@ -152,6 +152,8 @@ Number of wrong UMIs found: 0
 	Signals delivered: 0
 	Page size (bytes): 4096
 	Exit status: 0
+```
+
 ---------------------------------------------------------------------------------------
 using samtools to sort by chromosome number (default) before running python script 
 
